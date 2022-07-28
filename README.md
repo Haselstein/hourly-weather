@@ -29,11 +29,11 @@ The list of cities is saved and loaded from save.txt
 
 ## In the future
 
-Soft search for cities with a list of them
+- [ ] Soft search for cities with a list of them
 
-More option in root bar
+- [ ] More option in root bar
 
-(Maybe) Add more themes
+- [ ] (Maybe) Add more themes
 
-(Maybe) Add chance and amount of rainfall
+- [ ] (Maybe) Add chance and amount of rainfall
 
