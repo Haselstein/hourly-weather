@@ -10,5 +10,7 @@ module com.demo.demo {
 
     opens com.demo.demo to javafx.fxml;
     exports com.demo.demo;
+    exports com.demo.demo.controller;
+    opens com.demo.demo.controller to javafx.fxml;
 
 }

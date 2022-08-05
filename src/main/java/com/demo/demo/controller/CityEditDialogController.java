@@ -1,5 +1,6 @@
-package com.demo.demo;
+package com.demo.demo.controller;
 
+import com.demo.demo.City;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -8,10 +9,11 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import static com.demo.demo.MainApp.getCityData;
-import static com.demo.demo.CityOverviewController.getUrlContent;
+import static com.demo.demo.controller.CityOverviewController.getUrlContent;
 
 public class CityEditDialogController {
 
+    private static final String API_KEY = "88764e0a54d47f9fec0133fb1e57df11";
     @FXML
     private TextField cityNameField;
     @FXML
@@ -58,7 +60,15 @@ public class CityEditDialogController {
     private void handleSearch() { // Поиск города
         // #3 "Мягкий" поиск + выдавать списком результат поиска и выбирать город из него
 
-        String output = getUrlContent("https://api.openweathermap.org/data/2.5/forecast?q=" + cityNameField.getText() + "&cnt=8&appid=88764e0a54d47f9fec0133fb1e57df11&units=metric");
+        String output = getUrlContent(
+                "https://api.openweathermap.org/data/2.5/forecast?q=" +
+                        cityNameField.getText() +
+                        "&cnt=" +
+                        "8" +
+                        "&appid=" +
+                        API_KEY +
+                        "&units=" +
+                        "metric");
 
         // Здесь реализовать список результата поиска
         if (output.isEmpty() || output.isBlank()) {
@@ -80,7 +90,11 @@ public class CityEditDialogController {
             }
         }
 
-        if (cityNameField.getText() == null || cityNameField.getText().length() == 0 || getCityName.equals("Такой город не найден")) {
+        if (
+                cityNameField.getText() == null ||
+                cityNameField.getText().length() == 0 ||
+                getCityName.getText().equals("Такой город не найден")
+        ) {
             errorMessage += "Некорректные данные или город не выбран\n";
         }
 

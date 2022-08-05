@@ -1,5 +1,7 @@
-package com.demo.demo;
+package com.demo.demo.controller;
 
+import com.demo.demo.City;
+import com.demo.demo.MainApp;
 import com.google.gson.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,6 +15,8 @@ import java.lang.Math;
 
 public class CityOverviewController {
 
+    private static final String API_KEY = "88764e0a54d47f9fec0133fb1e57df11";
+
     @FXML
     private TableView<City> cityTable;
     @FXML
@@ -20,6 +24,7 @@ public class CityOverviewController {
     @FXML
     private Label cityNameLabel;
 
+    // @TODO Убрать переменные и сразу вставлять текст в ячейки
     @FXML
     private Label temp_9;
     @FXML
@@ -159,7 +164,14 @@ public class CityOverviewController {
 
             String getCityName = cityNameLabel.getText().trim();
 
-            String output = getUrlContent("https://api.openweathermap.org/data/2.5/forecast?q=" + getCityName + "&cnt=8&appid=88764e0a54d47f9fec0133fb1e57df11&units=metric");
+            String output = getUrlContent(
+                    "https://api.openweathermap.org/data/2.5/forecast?q=" +
+                            getCityName +
+                            "&cnt=8" +
+                            "&appid=" +
+                            API_KEY +
+                            "&units=" +
+                            "metric");
 
             JsonObject jobj = new Gson().fromJson(output, JsonObject.class);
             //System.out.println(jobj.getAsJsonObject().toString());
